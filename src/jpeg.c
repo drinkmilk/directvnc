@@ -38,7 +38,7 @@ int
 JpegFillInputBuffer(j_decompress_ptr cinfo)
 {
   jpegError = 1;
-  jpegSrcManager.bytes_in_buffer = (int)jpegBufferLen;
+  jpegSrcManager.bytes_in_buffer = (size_t)jpegBufferLen;
   jpegSrcManager.next_input_byte = (JOCTET *)jpegBufferPtr;
 
   return TRUE;
@@ -49,7 +49,7 @@ JpegSkipInputData(j_decompress_ptr cinfo, long num_bytes)
 {
   if (num_bytes < 0 || num_bytes > jpegSrcManager.bytes_in_buffer) {
     jpegError = 1;
-    jpegSrcManager.bytes_in_buffer = (int)jpegBufferLen;
+    jpegSrcManager.bytes_in_buffer = (size_t)jpegBufferLen;
     jpegSrcManager.next_input_byte = (JOCTET *)jpegBufferPtr;
   } else {
     jpegSrcManager.next_input_byte += (size_t) num_bytes;
@@ -76,7 +76,7 @@ JpegSetSrcManager(j_decompress_ptr cinfo, CARD8 *compressedData,
   jpegSrcManager.resync_to_restart = jpeg_resync_to_restart;
   jpegSrcManager.term_source = JpegTermSource;
   jpegSrcManager.next_input_byte = jpegBufferPtr;
-  jpegSrcManager.bytes_in_buffer = (int)jpegBufferLen;
+  jpegSrcManager.bytes_in_buffer = (size_t)jpegBufferLen;
 
   cinfo->src = &jpegSrcManager;
 }
