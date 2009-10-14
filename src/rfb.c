@@ -248,6 +248,8 @@ rfb_set_format_and_encodings()
    if (!write_exact(sock, (char*)&pf, sz_rfbSetPixelFormatMsg)) return 0;
 
    em.type = rfbSetEncodings;
+   em.nEncodings = 0;
+
    /* figure out the encodings string given on the command line */
    next = strtok(opt.encodings, " ");
    while (next && em.nEncodings < MAX_ENCODINGS)
