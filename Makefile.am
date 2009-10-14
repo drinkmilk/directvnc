@@ -8,7 +8,7 @@ MAINTAINERCLEANFILES = Makefile.in
 man_MANS = directvnc.1
 
 docs_DATA = README AUTHORS ChangeLog TODO
-docsdir = $(prefix)/doc/@PACKAGE@
+docsdir = $(prefix)/share/doc/@PACKAGE@
 
 EXTRA_DIST = \
 directvnc.1 $(docs_DATA)\
