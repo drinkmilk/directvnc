@@ -30,7 +30,7 @@ IDirectFBInputDevice    *mouse;
 IDirectFBEventBuffer    *input_buffer;
 DFBResult err;
 DFBSurfaceDescription dsc;
-DFBCardCapabilities caps;
+DFBGraphicsDeviceDescription caps;
 DFBDisplayLayerConfig layer_config;
 DFBRegion rect;
 DFBRectangle scratch_rect;
