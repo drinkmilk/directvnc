@@ -88,7 +88,8 @@ read_from_rfb_server(int sock, char *out, unsigned int n)
             {
                if (errno == EWOULDBLOCK || errno == EAGAIN)
                {
-		  dfb_process_events();
+                  dfb_process_events();
+                  usleep(10000);
                   i = 0;
                }
                else
@@ -132,7 +133,8 @@ read_from_rfb_server(int sock, char *out, unsigned int n)
             {
                if (errno == EWOULDBLOCK || errno == EAGAIN)
                {
-		  dfb_process_events();
+                  dfb_process_events();
+                  usleep(10000);
                   i = 0;
                }
                else
