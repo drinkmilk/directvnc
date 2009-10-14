@@ -1,0 +1,16 @@
+Source: directvnc
+Section: misc
+Priority: optional
+Maintainer: Debian QA Group <packages@qa.debian.org>
+Build-Depends: debhelper (>> 4.0.0), libdirectfb-dev (>= 0.9.24), zlib1g-dev, libjpeg62-dev, pkg-config, x11proto-core-dev
+Standards-Version: 3.6.2
+
+Package: directvnc
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: VNC client using the framebuffer as display
+ DirectVNC is a client implementing the remote framebuffer protocol (rfb)
+ which is used by VNC servers. If a VNC server is running on a machine you
+ can connect to it using this client and have the contents of its display
+ shown on your screen. Keyboard and mouse events are sent to the server, so
+ you can basically control a VNC server remotely.

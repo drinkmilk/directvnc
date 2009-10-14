@@ -1,0 +1,8 @@
+Principle author:
+Till Adam <till@adam-lilienthal.de>
+
+Head chief senior build engineer and release supervisor:
+Arnaud Launay <asl@launay.org>
+
+This contains code from both the original AT&T implementation and the tightvnc
+implementation by Constantin Kaplinsky <const@ce.cctpu.edu.ru>.

@@ -1,0 +1,6 @@
+- support for local cursor handling
+
+- support for tight and related encodings now works
+
+- vnc-headers are no longer necessary. The needed files are included wiht
+directvnc now. This might change again in the future.

@@ -1,0 +1,103 @@
+.TH directvnc 1 "Aug 26, 2001"
+.SH NAME
+directvnc - a vnc client for the linux framebuffer device
+.SH SYNOPSIS
+directvnc server:display [options]
+.SH DESCRIPTION
+.B DirectVNC 
+is a client implementing the remote framebuffer protocol (rfb) which is
+used by VNC servers. If a VNC server is running on a machine you can connect
+to it using this client and have the contents of its display shown on your
+screen. Keyboard and mouse events are sent to the server, so you can basically
+control a VNC server remotely. There are servers (and other clients) freely
+available for all operating systems. To find out more about VNC check out its
+home on the web at AT&T labs.
+
+    www.uk.research.att.com/vnc/
+
+What makes DirectVNC different from other unix vnc clients is that it uses the
+linux framebuffer device through the DirectFB library which enables it to run
+on anything that has a framebuffer without the need for a running X server.
+This includes embedded devices.  DirectFB even uses acceleration features of
+certain graphics cards. Find out all about DirectFB here:
+
+    www.directfb.org
+
+DirectVNC basically provides a very thin VNC client for unix framebuffer systems.
+
+.SH QUITTING
+Hitting <ctrl-q> exits the viewer.
+					      
+.SH OPTIONS
+.TP 5
+.B -h, --help
+display help output and exit
+.TP 5
+.B -v, --version
+output version information and exit
+.TP 5
+.B -p, --password
+password string to be passed to the server for authentification. Use this with
+care!
+.TP 5
+.B -b, --bpp
+the bits per pixel to be used by the client
+.TP 5
+.B -e --encodings
+DirectVNC supports several different compression methods to encode
+screen updates; this option specifies a set of them to use in order of
+preference. Encodings are specified separated with spaces, and must
+thus be enclosed in quotes if more than one is specified. Available
+encodings, in default order for a remote connection, are "copyrect
+tight hextile zlib corre rre raw". For a local connection (to the same
+machine), the default order to try is "raw copyrect tight hextile zlib
+corre rre". Raw encoding is always assumed as a last option if no
+other encoding can be used for some reason. 
+.TP 5
+.B -f --pollfrequency
+time in ms to wait between polls for screen updates when no events are to be
+processed. This reduces cpu and network load. Default is 50 ms.
+.TP 5
+.B -s, --shared (default)
+Don't disconnect already connected clients.
+.TP 5
+.B -n, --noshared
+Disconnect already connected clients.
+.TP 5
+.B -n, --nolocalcursor
+Disable local cursor tracking By default, and if the server is capable of the
+SoftCursor encoding, mouse movements do not generate framebuffer updates and
+the cursor state is kept locally. This removes mouse pointer lag and lets the
+connection appear faster.
+
+.TP 5
+.B -c --compresslevel level
+Use specified compression level (0..9) for "tight" and "zlib"
+encodings (only useable with servers capable of those encodings).  Level 1
+uses minimum of CPU time and achieves weak compression ratios, while level 9
+offers best compression but is slow in terms of CPU time consumption on the
+server side. Use high levels with very slow network connections, and low
+levels when working over high\-speed LANs. It's not recommended to use
+compression level 0, reasonable choices start from the level 1.
+
+.TP 5
+.B -q --quality level
+Use the specified image quality level (0..9) for "tight"
+encoding (only useable with servers capable of those encodings). 
+Specifying this option allows "tight" encoder to use lossy JPEG compression.
+Quality level 0 denotes bad image quality but very impressive compression
+ratios, while level 9 offers very good image quality at lower compression
+ratios. Note that "tight" encoder uses JPEG to encode only those screen areas
+that look suitable for lossy compression, so quality level 0 does not always
+mean unacceptable image quality.
+
+.SH LIMITATIONS
+Currently only 16 bpp color depth is supported.
+.SH BUGS
+Please tell me about them.
+.SH LICENSE
+Copyright Till Adam 2001
+.br
+Email bugs and feature requests to:
+.br
+.B <directvnc-user@mail.freesoftware.fsf.org>

@@ -1,0 +1,132 @@
+Fre Jan 24 10:31:03 2003  Till Adam  <till@adam-lilienthal.de>
+        * make screen update frequency configurable, to reduce cpu load
+
+Son Dez 01 16:14:36 2002  Till Adam  <till@adam-lilienthal.de>
+        * fix another problem pointed out by miguel sofer <mig@utdt.edu>
+	  by clipping to client dimensions on server > client
+
+Sam Nov 30 19:29:49 2002  Till Adam  <till@adam-lilienthal.de>
+        * make it compile and work with 0.9.15
+	* fix local cursor bug for client dimensions > server
+	  dimensions
+
+Fri Oct 11 12:34:24 2002  Till Adam  <till@adam-lilienthal.de>
+        * better autogen.sh
+	* make configure.in work with current autofoo
+	* add handler for sigint, so ctrl-c exits properly
+
+Sam Sep 21 23:34:45 2002  Till Adam  <till@adam-lilienthal.de>
+        * Add timeout between update request to minimize cpu utilization.
+	* Fix control key remainging pressed between sessions.
+	* Fix autofoo
+
+Sat Jul 20 13:08:40 2002  Till Adam  <till@adam-lilienthal.de>
+        * Release version 0.7
+
+Wed Jul 10 20:13:40 2002  Till Adam  <till@adam-lilienthal.de>
+        * add SoftCursorSupport which speeds up things as the cursor is
+	* tracked locally and does not trigger screen updates
+
+Fri Jun 28 21:49:36 2002  Till Adam  <till@adam-lilienthal.de>
+        * fix keyboard handling (what crack have I been smoking?)
+	* readd the X keysym files, so we dont need X headers
+
+Thu Jun 13 11:30:22 2002  Till Adam  <till@adam-lilienthal.de>
+        * bump required DFB version to 0.9.12
+	* ask for password later, so no password works (reported by 
+	* Bitt Faulk <wfaulk@beaglebros.com> and
+	* Evan Langlois <evanlanglois@yahoo.com>)
+	* misc fixups
+
+Mon Jun 03 21:08:42 2002  Till Adam  <till@adam-lilienthal.de>
+        * follow DFB 0.9.11 kay handling API changes
+	* bump version to 0.7
+
+Fri May 31 17:13:52 2002  Till Adam  <till@adam-lilienthal.de>
+        * fix src/Makefile.am (how did this ever work?)
+	* debian changes by Ovidiu Damian
+
+Fri Apr 26 18:29:39 2002  Till Adam  <till@adam-lilienthal.de>
+        * get tight and zlib encoding working
+	* add command line paramters for jpeg quality and compresslevel
+	* update man page
+	
+Sun Apr 21 16:30:36 2002  Till Adam  <till@adam-lilienthal.de>
+        * start support for tight encoding
+	* add zlib encoding
+
+Sat Feb 02 12:30:51 2002  Till Adam  <till@adam-lilienthal.de>
+        
+	* more API changes to follow. 
+	* Dont use the ascii value sent for the return key, but send 
+	  XK_Return, so a LF is added when appropriate.
+
+Fri Jan 18 22:11:07 2002  Till Adam  <till@adam-lilienthal.de>
+      
+        * follow DFB API changes InputBuffer -> EventBuffer etc.
+
+Sat Jan 05 22:51:44 2002  Till Adam  <till@adam-lilienthal.de>
+
+        * handle non existant host names gracefully
+	* include vncauth.h and rfbproto.h from vnc sources. They never change
+	  anyway and it removes the dependency
+	
+Die Dez 11 21:09:41 2001  Till Adam  <till@adam-lilienthal.de>
+
+        * removed --stretch again. Doesnt look good at all and the code is
+	  much simpler without it.
+	* use blit when doing copyrect - doh
+
+Sam Dez 08 10:31:05 2001  Till Adam  <till@adam-lilienthal.de>
+        
+	* middle button is 2, right button is 3 not the other way around
+	  (ahem)
+	* added spec file. No idea if it is any good, but it produces rpms
+          somehow. Better than nothing
+
+Fre Nov 30 09:28:01 2001  Till Adam  <till@adam-lilienthal.de>
+        
+	* changed the name from fbvnc to directvnc. There already is an app of
+	  that name.
+	* move from sourceforge to savannah.gnu.org
+
+Son Nov 25 21:19:39 2001  Till Adam  <till@adam-lilienthal.de>
+       
+        * added option --stretch, -x which causes the server image to be
+	  stretched or shrunk to the client resolution
+	* added a few other options
+	* updated man page
+	* hitting <ctrl-q> now quits the client
+	
+Don Nov 22 22:10:35 2001  Till Adam  <till@adam-lilienthal.de>
+
+        * fixed Bell messages and hopefully ServerCutText messages
+
+Sam Nov 17 22:22:39 2001  Till Adam  <till@adam-lilienthal.de>
+
+        * lots of changes
+	* added option handling via getopt
+	* huge speed increase through blitting instead of stretchblitting the
+	  whole screen - duh ;)
+	* various clean ups
+
+Son Okt 21 15:21:53 2001  Till Adam  <till@adam-lilienthal.de>
+        
+	* fixed errorneous (sp?) rgb calculation for rect drawing
+	* dont flip the whole screen on every redraw
+	
+Fre Aug 31 09:31:54 2001  Till Adam  <till@adam-lilienthal.de>
+        
+	* added hextile, RRE and CoRRE encodings
+	* scale mouse events from client to server resolution properly (until
+	  optional scaling is fixed, that is)
+
+Mon Aug 27 17:23:03 2001  Till Adam  <till@adam-lilienthal.de>
+
+        * sourceforge project created
+	* initial import into cvs
+	* add copy rect encoding
+
+Sam Aug 18 14:15:50 2001  Till Adam  <till@adam-lilienthal.de>
+
+	* project creation

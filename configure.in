@@ -1,0 +1,80 @@
+dnl Process this file with autoconf to create configure.
+
+AC_INIT(src/main.c)
+AM_INIT_AUTOMAKE(directvnc, 0.7.5)
+AM_CONFIG_HEADER(config.h)
+
+AC_ISC_POSIX
+AC_PROG_CC
+AM_PROG_CC_STDC
+AC_HEADER_STDC
+AC_PROG_INSTALL
+AC_PROG_CXX
+
+AM_ENABLE_SHARED
+dnl AM_DISABLE_STATIC
+AC_LIBTOOL_DLOPEN
+AM_PROG_LIBTOOL
+AM_WITH_DMALLOC
+
+if test "X$enable_shared" = "Xyes"; then
+     DLLDFLAGS=-export-dynamic
+       AC_SUBST(DLLDFLAGS)
+fi
+    
+
+LIBS="$LIBS -lm"
+
+
+dnl check for libjpeg
+AC_CHECK_LIB(jpeg, jpeg_destroy_decompress, 
+	     [
+	     AC_CHECK_HEADER(jpeglib.h,
+			     [
+			     LIBS="$LIBS -ljpeg"
+			     ],
+			     AC_MSG_WARN([***JPEGheader files not found.])
+			     )
+	     ],		
+	     AC_MSG_WARN([*** JPEG library not found.])
+	     )
+
+dnl Test for libz
+AC_CHECK_LIB(z, gzsetparams,
+	     [
+	      AC_CHECK_HEADER(zlib.h,
+			      [
+			       LIBS="$LIBS -lz"
+			      ],  
+			      AC_MSG_WARN([*** libz header files not found.])
+			      )
+	     ],	
+	     [
+	       AC_MSG_WARN([*** libz not found.])
+	     ]
+	     )       
+
+#
+# Find pkg-config needed for DFB
+#
+AC_PATH_PROG(PKG_CONFIG, pkg-config)
+if test -z "${PKG_CONFIG}"; then
+  AC_MSG_ERROR([*** pkg-config not found. See http://pkgconfig.sourceforge.net])
+fi
+
+if ! ${PKG_CONFIG} --atleast-pkgconfig-version 0.5 >/dev/null ; then
+  AC_MSG_ERROR([*** pkg-config too old; version 0.5 or better required.])
+fi
+
+
+#
+# Check for DirectFB
+#
+PKG_CHECK_MODULES(DIRECTFB, directfb >= 0.9.16)
+
+AC_CHECK_FUNCS([getopt getopt_long])
+
+AC_OUTPUT([
+Makefile
+src/Makefile
+])

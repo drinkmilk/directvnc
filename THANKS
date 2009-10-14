@@ -1,0 +1,27 @@
+- the stuff in socket.c is taken from the original AT&T unix vnciewer as are
+  the files related to vnc-auth (d3des.c d3des.h and vncauth.c)
+
+- the tight implementation is largely copied form the tight vnc distribution
+  by Constantin Kaplinsky <const@ce.cctpu.edu.ru>
+
+- A big thank you to the creators of the DirectFB library for their help and
+  patience with my questions and suggestions. Denis Oliver Kropp and Andreas
+  Hundt in particular.
+
+- Also thanks to Yasin Taskin for rpm debugging and beta testing
+
+- Ovidiu Damian did the debian infrastructure. Many thanks for that.
+
+- Miguel Sofer <mig@utdt.edu> sent a patch moving endianess adjustment 
+  calculations from runtime to compile time 
+
+- Arnaud Launay <asl@launay.org> cleaned up the build process and helped 
+  with releasing. Many thanks.
+
+
+The following people provided helpfull suggestions, tips or reported bugs.
+Thanks a lot:
+
+Bitt Faulk <wfaulk@beaglebros.com>
+Evan Langlois <evanlanglois@yahoo.com>
+

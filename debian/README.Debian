@@ -1,0 +1,10 @@
+directvnc for Debian
+--------------------
+
+To be able to run this software you need access to the /dev/fb0 device
+so the user needs to be in the video group. The user will also need
+access to /dev/mouse or /dev/psaux to be able to run directvnc.
+
+The display size is limited to 640x480.
+
+ -- Ola Lundqvist <opal@debian.org>, Sun, 31 Aug 2003 14:41:29 +0200
