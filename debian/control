@@ -7,7 +7,7 @@ Standards-Version: 3.6.2
 
 Package: directvnc
 Architecture: any
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: VNC client using the framebuffer as display
  DirectVNC is a client implementing the remote framebuffer protocol (rfb)
  which is used by VNC servers. If a VNC server is running on a machine you

@@ -2,32 +2,32 @@ This package was debianized by Ola Lundqvist <opal@debian.org> on
 Sun, 31 Aug 2003 14:41:29 +0200.
 
 It was downloaded from:
-	http://www.adam-lilienthal.de/directvnc/
+	http://github.com/drinkmilk/directvnc
 
 Upstream Author:
-	Principle author:
+	Main author:
 		Till Adam <till@adam-lilienthal.de>
 
 	Head chief senior build engineer and release supervisor:
 		Arnaud Launay <asl@launay.org>
 
+	Maintenance release in 2010:
+		Loris Boillet <loris.boillet@gmail.com>
+
 	This contains code from both the original AT&T implementation and the tightvnc
 	implementation by Constantin Kaplinsky <const@ce.cctpu.edu.ru>.
 
-Copyright:
+Copyright (C) 2002 Free Software Foundation, Inc.
 
- This is free software; you can redistribute it and/or modify it under
- the terms of the GNU General Public License as published by the Free
- Software Foundation; either version 2, or (at your option) any later
- version.
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2, or (at your option)
+  any later version.
 
- This is distributed in the hope that it will be useful, but WITHOUT
- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
- for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
- You should have received a copy of the GNU General Public License with
- your Debian GNU/Linux system, in /usr/share/common-licenses/GPL, or with
- the debarchiver source package as the file COPYING.  If not, write to the Free
- Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
- 02110-1301, USA.
+On Debian systems, the complete text of the GNU General Public License
+may be found in `/usr/share/common-licenses/GPL'.
