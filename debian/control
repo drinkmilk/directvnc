@@ -3,7 +3,8 @@ Section: misc
 Priority: optional
 Maintainer: Debian QA Group <packages@qa.debian.org>
 Build-Depends: debhelper (>> 4.0.0), libdirectfb-dev (>= 0.9.24), zlib1g-dev, libjpeg62-dev, pkg-config, x11proto-core-dev
-Standards-Version: 3.6.2
+Standards-Version: 3.8.3
+Homepage: http://drinkmilk.github.com/directvnc/
 
 Package: directvnc
 Architecture: any

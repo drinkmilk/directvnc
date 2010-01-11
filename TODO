@@ -1,1 +1,3 @@
 - account for different client resolution/colour depths
+- add features implemented in directvnc-rev (http://code.google.com/p/directvnc-rev/)
+- look at wishlist items listed in Debian Bugs (http://bugs.debian.org/cgi-bin/pkgreport.cgi?package=directvnc#_0_6_4)

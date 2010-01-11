@@ -41,7 +41,9 @@ void
 dfb_init(int argc, char *argv[])
 {
      DFBCHECK(DirectFBInit( &argc, &argv ));
-     DFBCHECK(DirectFBSetOption ("quiet", ""));
+
+     /* quiet option is no longer supported in DFB 1.2 */
+     /* DFBCHECK(DirectFBSetOption ("quiet", "")); */
 
      /* create the super interface */
      DFBCHECK(DirectFBCreate( &dfb ));
