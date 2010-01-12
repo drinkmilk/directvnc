@@ -19,7 +19,10 @@ What makes DirectVNC different from other unix vnc clients is that it uses the
 linux framebuffer device through the DirectFB library which enables it to run
 on anything that has a framebuffer without the need for a running X server.
 This includes embedded devices.  DirectFB even uses acceleration features of
-certain graphics cards. Find out all about DirectFB here:
+certain graphics cards. Thus a lot of configuration can be done by creating the
+library specific configuration file /etc/directfbrc or the program-specific
+configuration file /etc/directfbrc.directvnc. See directfbrc(5) or find out all
+about DirectFB here:
 
     www.directfb.org
 
@@ -94,11 +97,9 @@ mean unacceptable image quality.
 
 .SH LIMITATIONS
 Currently only 16 bpp color depth is supported.
-.SH BUGS
-Please tell me about them.
+
+.SH SEE ALSO
+.BR directfbrc (5)
 .SH LICENSE
 Copyright Till Adam 2001
 .br
-Email bugs and feature requests to:
-.br
-.B <directvnc-user@mail.freesoftware.fsf.org>

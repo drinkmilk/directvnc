@@ -1,5 +1,5 @@
 %define name directvnc 
-%define version 0.7.5
+%define version 0.7.6
 %define release 1
 
 Summary: VNC client for the GNU/Linux framebuffer device using the DirectFB library.
@@ -7,12 +7,12 @@ Name: %{name}
 Version: %{version}
 Release: %{release}
 Source: http://www.adam-lilienthal.de/directvnc/download/%{name}-%{version}.tar.gz
-Url: http://www.adam-lilienthal.de/directvnc/
+Url: http://drinkmilk.github.com/directvnc
 License: GPL
 Group: Networking/Remote Access
 BuildRoot: %{_tmppath}/%{name}-buildroot
 Prefix: %{_prefix}
-Requires: libdirectfb >= 0.9.16
+Requires: libdirectfb >= 0.9.24
 
 %description
 DirectVNC is a client implementing the remote framebuffer protocol (rfb)
