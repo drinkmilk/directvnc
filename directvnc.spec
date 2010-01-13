@@ -6,7 +6,7 @@ Summary: VNC client for the GNU/Linux framebuffer device using the DirectFB libr
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source: http://www.adam-lilienthal.de/directvnc/download/%{name}-%{version}.tar.gz
+Source: http://cloud.github.com/downloads/drinkmilk/directvnc/%{name}-%{version}.tar.gz
 Url: http://drinkmilk.github.com/directvnc
 License: GPL
 Group: Networking/Remote Access

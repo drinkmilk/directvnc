@@ -1,3 +1,23 @@
+Wed Jan 13 22:39:24 2010  Loris Boillet <lboillet69@gmail.com>
+	* 7 years later... new version! 0.7.6 (bug fixes only)
+	* Fix compatibility issue with DirectFB >= 0.9.24
+	  (Patch from "Roberto C. Sanchez" <roberto@familiasanchez.net>)
+	* Ran autoreconf -i to generate and update autoconf files.
+	  Fix autoconf warning
+	* We now require DirectFB >= 0.9.24
+	* Fix initialisation error which caused "raw" encoding to be always
+	  used, ignoring any command line option
+	* Specify in man page that only 16 is available for the -bpp option 
+	 (Patch from Marco Herrn <marco@mherrn.de>). Also fixed some spelling
+	  errors
+	* Fix hangs, segfaults, and/or busy-loops (Patch from Brian Brunswick
+	  <brian@ithil.org> and Ola Lundqvist <opal@debian.org>)
+	* Fix architecture independant files should be in $(prefix)/share 
+	  according to FHS (Patch taken from debian)
+	* Fix GCC warnings
+	* Fix FSF address in licenses (thanks to licensecheck)
+	* Updated Homepage and download place
+
 Fre Jan 24 10:31:03 2003  Till Adam  <till@adam-lilienthal.de>
         * make screen update frequency configurable, to reduce cpu load
 
