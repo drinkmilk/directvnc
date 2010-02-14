@@ -1,3 +1,17 @@
+directvnc (0.7.6-3) unstable; urgency=low
+
+  * Forgot to update Maintainer field in control file.
+
+ -- Loris Boillet <lboillet69@gmail.com>  Tue, 19 Jan 2010 23:53:25 +0100
+
+directvnc (0.7.6-2) unstable; urgency=low
+
+  * New maintainer. (Closes: #367169)
+  * Replacing obsolete dh_clean -k with dh_prep.
+  * Fix lintian warning (orig.tar.gz was missing).
+
+ -- Loris Boillet <lboillet69@gmail.com>  Mon, 18 Jan 2010 22:15:48 +0100
+
 directvnc (0.7.6-1) unstable; urgency=low
 
   * New upstream release. (Closes: #490057, #503390, #538110)
