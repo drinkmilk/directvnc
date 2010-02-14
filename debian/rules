@@ -8,9 +8,15 @@
 
 # These are used for cross-compiling and for saving the configure script
 # from having to guess our platform (since we know it already)
-DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
-DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+export DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+export DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 
+# FOR AUTOCONF 2.52 AND NEWER ONLY
+ifeq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
+	confflags += --build $(DEB_HOST_GNU_TYPE)
+else
+	confflags += --build $(DEB_BUILD_GNU_TYPE) --host $(DEB_HOST_GNU_TYPE)
+endif
 
 CFLAGS = -Wall -g
 
@@ -25,10 +31,19 @@ endif
 
 export CPPFLAGS = -I/usr/X11R6/include
 
+configure: Makefile.am configure.in
+	dh_testdir
+	chmod +x debian/autogen.sh
+	debian/autogen.sh
+
 config.status: configure
 	dh_testdir
-	# Add here commands to configure the package.
-	./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info
+
+	ln -sf /usr/share/misc/config.sub .
+	ln -sf /usr/share/misc/config.guess .
+	rm -f config.cache
+
+	./configure $(confflags) --prefix=/usr --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info
 
 
 build: build-stamp
@@ -46,15 +61,13 @@ clean:
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp 
-	[ ! -f Makefile ] || $(MAKE) distclean
-	-rm -f config.log
-ifneq "$(wildcard /usr/share/misc/config.sub)" ""
-	cp -f /usr/share/misc/config.sub config.sub
-endif
-ifneq "$(wildcard /usr/share/misc/config.guess)" ""
-	cp -f /usr/share/misc/config.guess config.guess
-endif
 
+	[ ! -f Makefile ] || $(MAKE) clean
+	[ ! -f Makefile ] || $(MAKE) distclean
+
+	find \( -name config.sub -o -name config.guess \
+		-o -name config.cache -o -name config.log \) -print0 \
+		| xargs -0 -r rm -f \;
 
 	dh_clean
 
