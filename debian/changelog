@@ -8,11 +8,12 @@ directvnc (0.7.6-1) unstable; urgency=low
     one directFB app is used at the same time (Closes: #355754)
   * Bump debian/compat to 7.
   * Update debian/control:
-    - Bump Standards-Version from 3.6.2 to 3.8.3 (no changes needed).
+    - Bump Standards-Version from 3.6.2 to 3.8.4 (no changes needed).
     - Add Homepage field. Thanks to lintian.
     - Add missing ${misc:Depends}. Thanks to lintian.
   * Fix copyright without copyright notice. Thanks to lintian.
   * Replacing obsolete dh_clean -k with dh_prep.
+  * Switch to dpkg-source 3.0 (quilt) format
 
  -- Loris Boillet <lboillet69@gmail.com>  Sun, 14 Feb 2010 11:13:09 +0100
 
