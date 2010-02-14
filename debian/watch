@@ -1,0 +1,8 @@
+version=3
+
+# direct access is forbidden...
+#http://cloud.github.com/downloads/drinkmilk/directvnc/directvnc-(.*)\.tar\.gz
+
+# ... so we scan the home page instead
+http://github.com/drinkmilk/directvnc/downloads \
+/downloads/drinkmilk/directvnc/directvnc-([\d\.]*).tar.gz
