@@ -18,6 +18,8 @@
 - Arnaud Launay <asl@launay.org> cleaned up the build process and helped 
   with releasing. Many thanks.
 
+- Thanks to Dimitry Golubovsky <golubovsky@gmail.com> for adding Keyboard
+  Layout Switching and 24bpp support
 
 The following people provided helpfull suggestions, tips or reported bugs.
 Thanks a lot:

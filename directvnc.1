@@ -1,4 +1,4 @@
-.TH directvnc 1 "Aug 26, 2001"
+.TH directvnc 1 "Mar 5, 2010"
 .SH NAME
 directvnc - a vnc client for the linux framebuffer device
 .SH SYNOPSIS
@@ -10,10 +10,7 @@ used by VNC servers. If a VNC server is running on a machine you can connect
 to it using this client and have the contents of its display shown on your
 screen. Keyboard and mouse events are sent to the server, so you can basically
 control a VNC server remotely. There are servers (and other clients) freely
-available for all operating systems. To find out more about VNC check out its
-home on the web at AT&T labs.
-
-    www.uk.research.att.com/vnc/
+available for all operating systems.
 
 What makes DirectVNC different from other unix vnc clients is that it uses the
 linux framebuffer device through the DirectFB library which enables it to run
@@ -44,8 +41,8 @@ password string to be passed to the server for authentication. Use this with
 care!
 .TP 5
 .B -b, --bpp
-the bits per pixel to be used by the client. Currently only 16 bpp are
-available.
+the bits per pixel to be used by the client. Currently only 16 and 24 bpp
+are available.
 .TP 5
 .B -e --encodings
 DirectVNC supports several different compression methods to encode
@@ -95,11 +92,27 @@ ratios. Note that "tight" encoder uses JPEG to encode only those screen areas
 that look suitable for lossy compression, so quality level 0 does not always
 mean unacceptable image quality.
 
+.TP 5
+.B -m --modmap PATH
+Path to the modmap (subset of X-style) file to load. With this option, it is
+possible to set an alternative keyboard layout, with ability to support non-latin
+characters such as Cyrillic. A plain text file, containing a subset of xmodmap(1)
+syntax (only keycode expressions are recognized with up to four KEYSYMNAMEs) can
+be converted into the format that directvnc understands, and can be loaded upon
+directvnc startup with this option.
+
 .SH LIMITATIONS
-Currently only 16 bpp color depth is supported.
+At the moment, it is still necessary to use the -bpp command line option to set color
+depth. When negotiating with the remote VNC server side, color depth supplied by the
+server will be used. It is therefore necessary to make sure (at least in the present)
+that screen color depth (default, or set in the DirectFB configuration file), color
+depth supplied at the command line, and remote VNC server color depth all match.
 
 .SH SEE ALSO
-.BR directfbrc (5)
-.SH LICENSE
-Copyright Till Adam 2001
+directfbrc(5), xmodmap(1)
+
+.SH AUTHORS
+Till Adam, Dimitry Golubovsky, Malte S. Stretz, Loris Boillet and others, based on 
+AT&T and tightvnc VNC implementations.
+
 .br

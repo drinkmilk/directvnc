@@ -6,10 +6,7 @@ DirectVNC README
    can connect to it using this client and have the contents of its display
    shown on your screen. Keyboard and mouse events are sent to the server, so
    you can basically control a VNC server remotely. There are servers (and
-   other clients) freely available for all operating systems. To find out more
-   about VNC check out its home on the web at AT&T labs. 
-   
-   www.uk.research.att.com/vnc/
+   other clients) freely available for all operating systems.
 
    What makes DirectVNC different from other unix vnc clients is that it uses
    the linux framebuffer device through the DirectFB library which enables it

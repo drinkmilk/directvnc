@@ -1,5 +1,5 @@
 - build-depend on libjpeg-dev instead of libjpeg62-dev
 - remove config.guess and config.sub to next released tar.gz
-- account for different client resolution/colour depths
-- add features implemented in directvnc-rev (http://code.google.com/p/directvnc-rev/)
+- find a way to include http://code.google.com/p/directvnc-rev/wiki/KeyboardMapping in our doc
+- look at the three patches received from Till 
 - look at wishlist items listed in Debian Bugs (http://bugs.debian.org/cgi-bin/pkgreport.cgi?package=directvnc#_0_6_4)
