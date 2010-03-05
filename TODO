@@ -1,3 +1,4 @@
+- build-depend on libjpeg-dev instead of libjpeg62-dev
 - remove config.guess and config.sub to next released tar.gz
 - account for different client resolution/colour depths
 - add features implemented in directvnc-rev (http://code.google.com/p/directvnc-rev/)

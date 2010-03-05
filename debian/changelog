@@ -3,7 +3,7 @@ directvnc (0.7.6-1) unstable; urgency=low
   * New maintainer. (Closes: #367169)
   * New upstream release. (Closes: #490057, #503390, #538110)
     - debian/patches/directvnc-manpage-bpp.patch: Merged upstream.
-    - Fix lintian warnings: ancient libtool and spelling errors in manpage
+    - Fix lintian warnings: ancient libtool and spelling errors in manpage.
   * Add a note in README.debian about needed access to /dev/tty0 if more than
     one directFB app is used at the same time (Closes: #355754)
   * Bump debian/compat to 7.
@@ -14,10 +14,11 @@ directvnc (0.7.6-1) unstable; urgency=low
     - Add build-depends to autotools-dev, autoconf, automake and libtool.
   * Fix copyright without copyright notice. Thanks to lintian.
   * Replacing obsolete dh_clean -k with dh_prep.
-  * Switch to dpkg-source 3.0 (quilt) format
-  * Autotools files now systematically re-generated (adds debian/autogen.sh)
+  * Switch to dpkg-source 3.0 (quilt) format.
+  * Autotools files now systematically re-generated (adds debian/autogen.sh).
+  * Cleaned-up debian/rules: removed commented out dh_* commands.
 
- -- Loris Boillet <lboillet69@gmail.com>  Sun, 14 Feb 2010 11:13:09 +0100
+ -- Loris Boillet <lboillet69@gmail.com>  Sun, 15 Feb 2010 09:13:09 +0100
 
 directvnc (0.7.5-9) unstable; urgency=low
 
