@@ -75,8 +75,8 @@ args_parse(int argc, char **argv)
    opt.v_offset = 0;
 
 #ifdef DEBUG
-   printf("server: %s\n", opt.servername);
-   printf("port: %d\n", opt.port);
+   fprintf(stderr, "server: %s\n", opt.servername);
+   fprintf(stderr, "port: %d\n", opt.port);
 #endif
 
    /* now go and parse the command line */
@@ -88,35 +88,53 @@ args_parse(int argc, char **argv)
 static void
 _parse_options_array(int argc, char **argv) 
 {
-   static char stropts[] = "hvob:p:e:c:q:snlf:";
+   static char sopts[] = {
+       /* actions */
+       'h',
+       'v',
+
+       /* options */
+       'b', ':',
+       'c', ':',
+       'q', ':',
+       'p', ':',
+       'e', ':',
+       's',
+       'n',
+       'l',
+       'f', ':',
+
+       0
+   };
    static struct option lopts[] = {
       /* actions */
-      {"help", 0, 0, 'h'},
-      {"version", 0, 0, 'v'},
+      {"help",           0, NULL, 'h'},
+      {"version",        0, NULL, 'v'},
+
       /* options */
-      {"bpp", 1, 0, 'b'},
-      {"compresslevel", 1, 0, 'c'},
-      {"quality", 1, 0, 'q'},
-      {"password", 1, 0, 'p'},
-      {"encodings", 1, 0, 'e'},
-      {"shared", 0, 0, 's'},
-      {"noshared", 0, 0, 'n'},
-      {"nolocalcursor", 0, 0, 'l'},
-      {"pollfrequency", 1, 0, 'f'},
+      {"bpp",            1, NULL, 'b'},
+      {"compresslevel",  1, NULL, 'c'},
+      {"quality",        1, NULL, 'q'},
+      {"password",       1, NULL, 'p'},
+      {"encodings",      1, NULL, 'e'},
+      {"shared",         0, NULL, 's'},
+      {"noshared",       0, NULL, 'n'},
+      {"nolocalcursor",  0, NULL, 'l'},
+      {"pollfrequency",  1, NULL, 'f'},
+
       {0, 0, 0, 0}
    };
-   int optch = 0, cmdx = 0;
-   int bpp = 0;
-   int compresslevel = 0;
-   int quality = 0;
+   int optch = 0, opti = 0;
 
    /* Now to parse some optionarinos */
-   while ((optch = getopt_long_only(argc, argv, stropts, lopts, &cmdx)) != EOF)
+   while ((optch = getopt_long_only(argc, argv, sopts, lopts, &opti)) != -1)
    {
+      int intarg = 0;
       switch (optch)
       {
 	 case 0:
 	    break;
+
 	 case 'h':
 	    show_usage_and_exit();
 	    break;
@@ -124,11 +142,12 @@ _parse_options_array(int argc, char **argv)
             show_version();
 	    exit(1);
 	    break;
+
 	 case 'b':
-	    bpp = atoi(optarg);
-	    switch (bpp) {
+	    intarg = atoi(optarg);
+	    switch (intarg) {
 	       case 16:
-		  opt.client.bpp = bpp;
+		  opt.client.bpp = intarg;
 		  break;
 	       case 8:
 	       case 24:
@@ -137,6 +156,7 @@ _parse_options_array(int argc, char **argv)
 		  fprintf(stderr, "Depth currently not supported!\n");
 		  exit(-1);
 	    }
+	    break;
 	 case 'f':
 	    opt.poll_freq = atoi(optarg);
 	    break;
@@ -155,18 +175,24 @@ _parse_options_array(int argc, char **argv)
 	 case 'l':
 	    opt.localcursor = 0;
 	    break;
-
 	 case 'c':
-	    compresslevel = atoi(optarg);
-	    if (compresslevel >=0 && compresslevel <= 9)
-	       opt.client.compresslevel = compresslevel;
+	    intarg = atoi(optarg);
+	    if (intarg >= 0 && intarg <= 9) {
+	       opt.client.compresslevel = intarg;
+	    } else {
+	       fprintf(stderr, "Invalid compression level: %s\n", optarg);
+	       exit(-2);
+	    }
 	    break;
 	 case 'q':
-	    quality = atoi(optarg);
-	    if (quality >=0 && quality <= 9)
-	       opt.client.quality = quality;
+	    intarg = atoi(optarg);
+	    if (intarg >= 0 && intarg <= 9) {
+	       opt.client.quality = intarg;
+	    } else {
+	       fprintf(stderr, "Invalid quality level: %s\n", optarg);
+	       exit(-2);
+	    }
 	    break;
-
 
       }
    }
@@ -176,25 +202,34 @@ static void
 show_usage_and_exit()
 {
 
-   fprintf(stderr,"\n"
- "DirectVNC viewer version %s\n"
- "\n"
- "usage: directvnc <host>:<display#> [<options>]\n"
- "\n"
- "with options being:\n"
- "  -h, --help                 Show this and exit.\n"
- "  -v, --version              Show version information and exit\n"
- "  -b, --bpp NUM              Set the clients bit per pixel to NUM\n"
- "  -p, --password STRING      Password for the server\n"
- "  -e, --encodings \"STRING\" list of encodings to be used in order of\n"
- "                             preference (e.g. \"hextile copyrect\")\n"
- "  -f, --pollfrequency MS     time between checks for events in ms \n"
- "  -s, --shared (default)     Don't disonnect already connected clients\n"
- "  -n, --noshared             Disconnect already connected clients\n"
- "  -l, --nolocalcursor        Disable local cursor handling.\n"
- "  -c, --compresslevel        0..9 compression level to be used by zlib\n"
- "  -q, --quality              0..9 quality level to be used by jpeg compression in tight encoding\n"
- , VERSION);
+   fprintf(stderr, "\n"
+      "DirectVNC viewer version %s\n"
+      "\n"
+      "Usage: directvnc <server>[:<display>] [<options>]\n"
+      "\n"
+      "with\n"
+      "  server                     "   "VNC host to connect to.\n"
+      "  display                    "   "Optional display number (default: 0).\n"
+      "\n"
+      "and options being:\n"
+     /*0        1         2         */ /*3         4         5         6         7        */
+     /*12345678901234567890123456789*/ /*0123456789012345678901234567890123456789012345678*/
+      "  -p, --password STRING      "   "Password for the server.\n"
+      "  -b, --bpp NUM              "   "Set the clients bit per pixel to NUM.\n"
+      "  -f, --pollfrequency MS     "   "Time between checks for events in milliseconds.\n"
+      "  -l, --nolocalcursor        "   "Disable local cursor handling.\n"
+      "  -s, --shared               "   "Don't disonnect already connected clients.\n"
+      "  -n, --noshared             "   "Disconnect already connected clients.\n"
+      "  -e, --encodings \"STRING\"   " "List of encodings to be used in order of\n"
+      "                             "   "preference (e.g. \"hextile copyrect\").\n"
+      "  -c, --compresslevel LEVEL  "   "Compression level (0..9) to be used by zlib.\n"
+      "  -q, --quality LEVEL        "   "Quality level (0..9) to be used by jpeg\n"
+      "                             "   "compression in tight encoding.\n"
+      "  -h, --help                 "   "Show this text and exit.\n"
+      "  -v, --version              "   "Show version information and exit.\n"
+      "\n"
+        , VERSION
+   );
    exit(1);
 }
 
@@ -203,4 +238,3 @@ show_version()
 {
    fprintf(stderr, "This is version %s of DirectVNC\n", VERSION);
 }
-

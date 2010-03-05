@@ -24,12 +24,12 @@
 #define KeySym int
 
 /* DirectFB interfaces needed */
-IDirectFB               *dfb = NULL;
-IDirectFBSurface        *primary;
-IDirectFBDisplayLayer   *layer;
-IDirectFBInputDevice    *keyboard;
-IDirectFBInputDevice    *mouse;
-IDirectFBEventBuffer    *input_buffer;
+IDirectFB               *dfb          = NULL;
+IDirectFBSurface        *primary      = NULL;
+IDirectFBDisplayLayer   *layer        = NULL;
+IDirectFBInputDevice    *keyboard     = NULL;
+IDirectFBInputDevice    *mouse        = NULL;
+IDirectFBEventBuffer    *input_buffer = NULL;
 DFBResult err;
 DFBSurfaceDescription dsc;
 DFBGraphicsDeviceDescription caps;
@@ -81,12 +81,18 @@ dfb_init(int argc, char *argv[])
 void 
 dfb_deinit()
 {
-     primary->Release( primary );
-     input_buffer->Release(input_buffer);
-     keyboard->Release( keyboard );
-     mouse->Release( mouse );
-     layer->Release( layer );
-     dfb->Release( dfb ); 
+    if ( primary )
+         primary->Release( primary );
+    if ( input_buffer )
+        input_buffer->Release( input_buffer );
+    if ( keyboard )
+        keyboard->Release( keyboard );
+    if ( mouse )
+        mouse->Release( mouse );
+    if ( layer )
+        layer->Release( layer );
+    if ( dfb )
+        dfb->Release( dfb );
 }
  
 void
@@ -228,10 +234,45 @@ _dfb_handle_key_event(DFBInputEvent evt, int press_or_release)
 {	
    int keysym;
    int level = 0;
+   char keytype = 0; /* '',A,N,K */
    DFBInputDeviceKeymapEntry entry;
    keyboard->GetKeymapEntry(keyboard, evt.key_code, &entry);
-   if (evt.modifiers & DIMM_SHIFT) 
-      level = 1;
+   /* OK according to the RFB specs we need to modify
+      any key_codes to thier symbols. This includes
+      caps lock and numlock, as they are ignored by the
+      server.
+      It might be good to back through this code sometime
+      to make is execute faster. */
+   /*What type of key do we have ALPHA,NUMBER,KEYPAD,OTHER */
+   if ((evt.key_id >= DIKI_KP_DIV) && (evt.key_id<= DIKI_KP_9))
+      keytype='K';
+   if ((evt.key_id >= DIKI_A) && (evt.key_id<= DIKI_Z))
+      keytype='A';
+   if ((evt.key_id >= DIKI_0) && (evt.key_id<= DIKI_9))
+      keytype='N';
+
+   /*CASES: */
+   /* SHIFT=shifton for all */
+   if (evt.modifiers & DIMM_SHIFT) {
+      level = 1; /*do the shift*/
+      /* SHIFT NUMLOCK CAPSLOCK == ALPHA-Normal, Numbers-Shifted, and KP-Normal */
+      if ((evt.locks & DILS_CAPS) && (evt.locks & DILS_NUM) &&
+         ((keytype=='K')||(keytype=='A')) ) {
+           level = 0;
+      } else {
+         /* SHIFT CAPSLOCK == ALPHA-Normal, Numbers-Shifted, and KP-Shifted */
+         if ((evt.locks & DILS_CAPS) && (keytype=='A')) level = 0;
+         /* SHIFT NUMLOCK == ALPHA-Shifted, Numbers-Shifted, and KP-Normal */
+         if ((evt.locks & DILS_NUM) && (keytype=='K')) level = 0;
+      }
+
+   } else {
+      /* CAPSLOCK == ALPHA-Shifted, Numbers-Normal, and KP-Normal */
+      if ((evt.locks & DILS_CAPS) && (keytype=='A')) level = 1;
+      /* NUMLOCK == ALPHA-Normal, Numbers-Normal, and KP-Shifted */
+      if ((evt.locks & DILS_NUM) && (keytype=='K')) level = 1;
+   }
+
    if (evt.modifiers & DIMM_ALTGR) 
       level = level + 2;
    keysym = DirectFBTranslateSymbol(&entry, level);
