@@ -35,7 +35,13 @@ main (int argc,char **argv)
    args_parse(argc, argv);
    mousestate.buttonmask = 0;
 
-  
+   /* Read the modifier map if provided */
+
+   if (!modmap_read_file(opt.modmapfile)) {
+      printf("Couldn't parse the keyboard mapping file %d. Exiting\n",opt.modmapfile);
+      exit(0);
+   }
+ 
    /* Connect to server */
    if (!rfb_connect_to_server(opt.servername, 5900 + opt.port))	
    {

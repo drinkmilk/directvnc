@@ -117,7 +117,7 @@ args_parse(int argc, char **argv)
 static void
 _parse_options_array(int argc, char **argv) 
 {
-   static char stropts[] = "hvob:p:e:c:q:snlf:";
+   static char stropts[] = "hvob:p:e:c:q:snlf:m:";
    static struct option lopts[] = {
       /* actions */
       {"help", 0, 0, 'h'},
@@ -132,6 +132,7 @@ _parse_options_array(int argc, char **argv)
       {"noshared", 0, 0, 'n'},
       {"nolocalcursor", 0, 0, 'l'},
       {"pollfrequency", 1, 0, 'f'},
+      {"modmap", 1, 0, 'm'},
       {0, 0, 0, 0}
    };
    int optch = 0, cmdx = 0;
@@ -184,6 +185,9 @@ _parse_options_array(int argc, char **argv)
 	 case 'e':
 	    opt.encodings = strdup(optarg);
 	    break;   
+	 case 'm':
+	    opt.modmapfile = strdup(optarg);
+	    break;
 	 case 's':
 	    opt.shared = 1;
 	    break;
@@ -232,6 +236,7 @@ show_usage_and_exit()
  "  -l, --nolocalcursor        Disable local cursor handling.\n"
  "  -c, --compresslevel        0..9 compression level to be used by zlib\n"
  "  -q, --quality              0..9 quality level to be used by jpeg compression in tight encoding\n"
+ "  -m, --modmap               Path to the modmap (subset of X-style) file to load\n"
  , VERSION);
    exit(1);
 }
