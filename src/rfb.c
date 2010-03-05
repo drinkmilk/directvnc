@@ -712,10 +712,10 @@ rfb_get_rgb_from_data(int *r, int *g, int *b, char *data)
  	 *b = (( foo16 >> opt.client.blueshift ) & opt.client.bluemax)<<3;
 	 break;
       case 24:
-	 printf("FIXME unimplemented\n");
-	 break;
       case 32:
-	 printf("FIXME unimplemented\n");
+         *r=data[2]&0x00FF;
+	 *g=data[1]&0x00FF;
+	 *b=data[0]&0x00FF;
 	 break;
    }
 }

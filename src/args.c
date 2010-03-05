@@ -29,6 +29,35 @@ static void show_usage_and_exit();
 static void show_version();
 static void _parse_options_array(int argc, char **argv);
 
+/* Predefined client side settings
+ * for 16 and 24 (32 w/o alpha) bpp modes.
+ * It is believed to be sufficient for most situations.
+ * */
+
+static struct clientsettings cl16bpp = {
+  .bpp = 16,
+  .depth = 16,
+  .truecolour = 1,
+  .redmax = 31,
+  .greenmax = 63,
+  .bluemax = 31,
+  .redshift = 11,
+  .greenshift = 5,
+  .blueshift = 0
+};
+
+static struct clientsettings cl24bpp = {
+  .bpp = 32,
+  .depth = 24,
+  .truecolour = 1,
+  .redmax = 255,
+  .greenmax = 255,
+  .bluemax = 255,
+  .redshift = 16,
+  .greenshift = 8,
+  .blueshift = 0
+};
+
 int
 args_parse(int argc, char **argv)
 {
@@ -103,9 +132,11 @@ _parse_options_array(int argc, char **argv)
        'n',
        'l',
        'f', ':',
+       'm', ':',
 
        0
    };
+
    static struct option lopts[] = {
       /* actions */
       {"help",           0, NULL, 'h'},
@@ -121,6 +152,7 @@ _parse_options_array(int argc, char **argv)
       {"noshared",       0, NULL, 'n'},
       {"nolocalcursor",  0, NULL, 'l'},
       {"pollfrequency",  1, NULL, 'f'},
+      {"modmap",         1, NULL, 'm'},
 
       {0, 0, 0, 0}
    };
@@ -146,11 +178,20 @@ _parse_options_array(int argc, char **argv)
 	 case 'b':
 	    intarg = atoi(optarg);
 	    switch (intarg) {
+	       case 24:
+	          opt.client.bpp=32;
+                  opt.client.depth=intarg;
+		  opt.client.redmax=255;
+		  opt.client.bluemax=255;
+		  opt.client.greenmax=255;
+		  opt.client.redshift=16;
+		  opt.client.greenshift=8;
+		  opt.client.blueshift=0;
+	          break;
 	       case 16:
 		  opt.client.bpp = intarg;
 		  break;
 	       case 8:
-	       case 24:
 	       case 32:
 	       default:
 		  fprintf(stderr, "Depth currently not supported!\n");
@@ -166,6 +207,9 @@ _parse_options_array(int argc, char **argv)
 	 case 'e':
 	    opt.encodings = strdup(optarg);
 	    break;   
+	 case 'm':
+	    opt.modmapfile = strdup(optarg);
+	    break;
 	 case 's':
 	    opt.shared = 1;
 	    break;
@@ -225,6 +269,7 @@ show_usage_and_exit()
       "  -c, --compresslevel LEVEL  "   "Compression level (0..9) to be used by zlib.\n"
       "  -q, --quality LEVEL        "   "Quality level (0..9) to be used by jpeg\n"
       "                             "   "compression in tight encoding.\n"
+      "  -m, --modmap STRING        "   "Path to the modmap (subset of X-style) file to load\n"
       "  -h, --help                 "   "Show this text and exit.\n"
       "  -v, --version              "   "Show version information and exit.\n"
       "\n"

@@ -228,13 +228,24 @@ dfb_save_cursor_rect( IDirectFBSurface *surf, int x, int y, int w, int h)
    surf->Blit(surf, primary, &scratch_rect, surf_w-w, surf_h -h);
 }
 
+static KeySym
+_translate_with_modmap (DFBInputDeviceKeymapEntry *entry, int index, DFBInputDeviceLockState lkst, int ctrl) {
+   if (opt.modmapfile != NULL && !ctrl) {
+       KeySym ks = modmap_translate_code(entry->code, lkst, index & 1);
+       if (ks != XK_VoidSymbol) return ks;
+   }
+   return DirectFBTranslateSymbol(entry, index);
+}
+
 
 static void
 _dfb_handle_key_event(DFBInputEvent evt, int press_or_release)
 {	
    int keysym;
    int level = 0;
+   int ctrl = 0;
    char keytype = 0; /* '',A,N,K */
+   DFBInputDeviceLockState lkst;
    DFBInputDeviceKeymapEntry entry;
    keyboard->GetKeymapEntry(keyboard, evt.key_code, &entry);
    /* OK according to the RFB specs we need to modify
@@ -275,7 +286,9 @@ _dfb_handle_key_event(DFBInputEvent evt, int press_or_release)
 
    if (evt.modifiers & DIMM_ALTGR) 
       level = level + 2;
-   keysym = DirectFBTranslateSymbol(&entry, level);
+   if (evt.modifiers & DIMM_CONTROL)
+      ctrl = 1;
+   keysym = _translate_with_modmap(&entry, level, lkst, ctrl);
    rfb_send_key_event(keysym, press_or_release); 	     
 }
 

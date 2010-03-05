@@ -121,6 +121,7 @@ struct __dfb_vnc_options
    int port;
    char *password;
    char *encodings;
+   char *modmapfile;
    struct serversettings server;
    struct clientsettings client;
    int shared;
@@ -163,6 +164,10 @@ void SoftCursorLockArea(int x, int y, int w, int h);
 void SoftCursorUnlockScreen(void);
 void SoftCursorMove(int x, int y);
 
+/* modmap.c */
+
+int modmap_read_file(char *filename);
+int modmap_translate_code(int keycode,DFBInputDeviceLockState lock, int shift);
 
 /* macro for a safe call to DirectFB functions */
 #define DFBCHECK(x...)                                                    \

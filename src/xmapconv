@@ -1,0 +1,26 @@
+#! /bin/sh
+
+# A script to convert a xmodmap-style file into one that directvnc understands.
+# The file is passed through the C preprocessor to convert character keysyms
+# to their numeric equivalents.
+
+# The script reads the xmodmap file on its stdin and outputs directvnc-compatible 
+# on its stdout.
+
+export PROG=`basename $0`
+export KEYSYMDEF=`dirname $0`/../include/keysymdef.h
+
+if [ ! -r $KEYSYMDEF ] ; then 
+  echo "$0: cannot access the keysymdef file"
+  exit
+fi
+
+export FORCEDEFS=`grep '^#ifdef' $KEYSYMDEF | sed 's/#ifdef */-D/g'`
+
+grep '^ *keycode' | sed 's/=//g' | awk '
+{
+   for(i=3;i<=NF;i++) {
+     $i="XK_" $i;
+   }
+   print
+}' | cpp -P $FORCEDEFS -imacros $KEYSYMDEF -
