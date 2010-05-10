@@ -34,9 +34,7 @@ Requirements
 ------------
    - DirectFB library available from convergence integrated media
      (www.directfb.org)
-   - Linux kernel 2.4.x with working framebuffer device (check /proc/fb). This
-     is actually a requirement of DirectFB but I thought I'd mention it here
-     to save you disappointment.
+   - Linux kernel 2.4.x with working framebuffer device (check /proc/fb).
 
 See COPYING for license information and INSTALL for generic installation
 instructions.
