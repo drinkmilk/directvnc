@@ -2,7 +2,7 @@ Source: directvnc
 Section: misc
 Priority: optional
 Maintainer: Loris Boillet <lboillet69@gmail.com>
-Build-Depends: debhelper (>= 7), libdirectfb-dev (>= 0.9.24), zlib1g-dev, libjpeg62-dev, pkg-config, x11proto-core-dev, autotools-dev, autoconf, automake, libtool
+Build-Depends: debhelper (>= 7), libdirectfb-dev (>= 0.9.24), zlib1g-dev, libjpeg-dev, pkg-config, x11proto-core-dev, autotools-dev, autoconf, automake, libtool
 Standards-Version: 3.8.4
 Homepage: http://drinkmilk.github.com/directvnc/
 
