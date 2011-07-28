@@ -1,5 +1,6 @@
-This package was debianized by Ola Lundqvist <opal@debian.org> on
-Sun, 31 Aug 2003 14:41:29 +0200.
+This package was debianized by:
+       Ola Lundqvist <opal@debian.org> on Sun, 31 Aug 2003 14:41:29 +0200.
+       Maintained by Loris Boillet <lboillet69@gmail.com> since 2010.
 
 It was downloaded from:
 	http://github.com/drinkmilk/directvnc
@@ -11,7 +12,7 @@ Upstream Author:
 	Head chief senior build engineer and release supervisor:
 		Arnaud Launay <asl@launay.org>
 
-	Maintenance release in 2010:
+	Maintenance release from 2010:
 		Loris Boillet <lboillet69@gmail.com>
 
 	This contains code from both the original AT&T implementation and the tightvnc

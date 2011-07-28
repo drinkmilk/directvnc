@@ -3,12 +3,13 @@ Section: misc
 Priority: optional
 Maintainer: Loris Boillet <lboillet69@gmail.com>
 Build-Depends: debhelper (>= 7), libdirectfb-dev (>= 0.9.24), zlib1g-dev, libjpeg-dev, pkg-config, x11proto-core-dev, autotools-dev, autoconf, automake, libtool
-Standards-Version: 3.8.4
+Standards-Version: 3.9.2
 Homepage: http://drinkmilk.github.com/directvnc/
 
 Package: directvnc
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: x11proto-core-dev
 Description: VNC client using the framebuffer as display
  DirectVNC is a client implementing the remote framebuffer protocol (rfb)
  which is used by VNC servers. If a VNC server is running on a machine you

@@ -1,3 +1,16 @@
+directvnc (0.7.7-1) unstable; urgency=low
+
+  * New upstream release.
+  * Update debian/control:
+    - Build-Depends on libjpeg-dev, not libjpeg62-dev (Closes: #633728)
+    - Bump Standards-Version from 3.8.4 to 3.9.2 (no changes needed).
+    - Recommends x11proto-core-dev (useful to generate keymap files).
+  * Fix debian/rules missing build-arch and build-indep target. Thanks to
+    lintian.
+  * Fix typos in copyright file.
+
+ -- Loris Boillet <lboillet69@gmail.com>  Sun, 31 Jul 2011 09:15:59 +0100
+
 directvnc (0.7.6-1) unstable; urgency=low
 
   * New maintainer. (Closes: #367169)
