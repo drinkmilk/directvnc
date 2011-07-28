@@ -186,7 +186,7 @@ static void process_line (lineno, buffer)
     me.keycode = 0;
     me.base = me.shift = me.mode = me.modshift = XK_VoidSymbol;
 
-    sscanf(cp,"%s %d %x %x %x %x", kkbuf, &me.keycode, &me.base, &me.shift, &me.mode, &me.modshift);
+    sscanf(cp,"%s %c %x %x %x %x", kkbuf, &me.keycode, &me.base, &me.shift, &me.mode, &me.modshift);
 
     kbmap[me.keycode&0xFF] = me;
 

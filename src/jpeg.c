@@ -27,7 +27,7 @@
 static int jpegError;
 static struct jpeg_source_mgr jpegSrcManager;
 static JOCTET *jpegBufferPtr;
-static size_t *jpegBufferLen;
+static size_t jpegBufferLen;
 
 void
 JpegInitSource(j_decompress_ptr cinfo)
@@ -69,7 +69,7 @@ JpegSetSrcManager(j_decompress_ptr cinfo, CARD8 *compressedData,
 		  int compressedLen)
 {
   jpegBufferPtr = (JOCTET *)compressedData;
-  jpegBufferLen = (size_t*)compressedLen;
+  jpegBufferLen = (size_t)compressedLen;
 
   jpegSrcManager.init_source = JpegInitSource;
   jpegSrcManager.fill_input_buffer = JpegFillInputBuffer;
@@ -77,7 +77,7 @@ JpegSetSrcManager(j_decompress_ptr cinfo, CARD8 *compressedData,
   jpegSrcManager.resync_to_restart = jpeg_resync_to_restart;
   jpegSrcManager.term_source = JpegTermSource;
   jpegSrcManager.next_input_byte = jpegBufferPtr;
-  jpegSrcManager.bytes_in_buffer = (size_t)jpegBufferLen;
+  jpegSrcManager.bytes_in_buffer = jpegBufferLen;
 
   cinfo->src = &jpegSrcManager;
 }

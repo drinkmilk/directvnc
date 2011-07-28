@@ -38,7 +38,7 @@ main (int argc,char **argv)
    /* Read the modifier map if provided */
 
    if (!modmap_read_file(opt.modmapfile)) {
-      printf("Couldn't parse the keyboard mapping file %d. Exiting\n",opt.modmapfile);
+      printf("Couldn't parse the keyboard mapping file %s. Exiting\n",opt.modmapfile);
       exit(0);
    }
  
