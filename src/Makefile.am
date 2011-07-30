@@ -15,7 +15,7 @@ directvnc_SOURCES       = main.c debug.h dfb.c directvnc.h sockets.c args.c\
 		       tight.c tight.h rfbproto.h keysym.h keysymdef.h \
 		       cursor.c modmap.c
 
-bin_SCRIPTS = xmapconv
+bin_SCRIPTS = directvnc-xmapconv
 
 include_HEADERS = keysymdef.h
 

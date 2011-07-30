@@ -1,0 +1,20 @@
+.TH directvnc-xmapconv 1 "Jul 30, 2011"
+.SH NAME
+directvnc-xmapconv - produce directvnc's xmodmap keyboard layout files
+.SH SYNOPSIS
+directvnc-xmodmap
+.SH DESCRIPTION
+directvnc-xmapconv reads an xmodmap syntax file from standard input, and writes
+the directvnc compatible syntax file to standard output. Inside, the script
+runs its standard input through the C preprocessor including the keysymdef.h
+file and prepending each keysym identifier with XK_. The directvnc keyboard
+layout file mentioned earlier was produced exactly this way out of the xmodmap
+file for Cyrillic input.
+
+.SH SEE ALSO
+directvnc-kbmapping(7), directvnc(1), xmodmap(1)
+
+.SH AUTHORS
+Dimitry Golubovsky, Loris Boillet
+
+.br

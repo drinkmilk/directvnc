@@ -99,7 +99,7 @@ possible to set an alternative keyboard layout, with ability to support non-lati
 characters such as Cyrillic. A plain text file, containing a subset of xmodmap(1)
 syntax (only keycode expressions are recognized with up to four KEYSYMNAMEs) can
 be converted into the format that directvnc understands, and can be loaded upon
-directvnc startup with this option.
+directvnc startup with this option. See directvnc-kbmapping(7).
 
 .SH LIMITATIONS
 At the moment, it is still necessary to use the -bpp command line option to set color
@@ -109,10 +109,10 @@ that screen color depth (default, or set in the DirectFB configuration file), co
 depth supplied at the command line, and remote VNC server color depth all match.
 
 .SH SEE ALSO
-directfbrc(5), xmodmap(1)
+directfbrc(5), directvnc-kbmapping(7), directvnc-xmapconv(1), xmodmap(1)
 
 .SH AUTHORS
-Till Adam, Dimitry Golubovsky, Malte S. Stretz, Loris Boillet and others, based on 
+Till Adam, Dimitry Golubovsky, Malte S. Stretz, Loris Boillet and others, based on
 AT&T and tightvnc VNC implementations.
 
 .br

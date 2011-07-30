@@ -1,5 +1,5 @@
 %define name directvnc 
-%define version 0.7.6
+%define version 0.7.7
 %define release 1
 
 Summary: VNC client for the GNU/Linux framebuffer device using the DirectFB library.
@@ -53,9 +53,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,755)
-%doc AUTHORS ChangeLog README TODO
+%doc AUTHORS ChangeLog README
 %{_mandir}/man1/directvnc.1*
+%{_mandir}/man1/directvnc-xmapconv.1*
+%{_mandir}/man1/directvnc-kbmapping.7*
 %{_bindir}/directvnc
+%{_bindir}/directvnc-xmapconv
 
 
 

@@ -375,6 +375,7 @@ dfb_process_events()
 		  mousestate.buttonmask |= rfbButton3Mask;
 		  break;
 	       default:
+		  //fprintf(stdout, "Are we capturing the wheel here? %d\n", evt.button);
 		  break;
 	    }
 	    rfb_update_mouse();

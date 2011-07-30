@@ -182,7 +182,7 @@ static void process_line (lineno, buffer)
 
     /* handle input */
     /*handle_line (cp, len);*/
-    
+
     me.keycode = 0;
     me.base = me.shift = me.mode = me.modshift = XK_VoidSymbol;
 

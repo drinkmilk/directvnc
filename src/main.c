@@ -41,7 +41,7 @@ main (int argc,char **argv)
       printf("Couldn't parse the keyboard mapping file %s. Exiting\n",opt.modmapfile);
       exit(0);
    }
- 
+
    /* Connect to server */
    if (!rfb_connect_to_server(opt.servername, 5900 + opt.port))	
    {
