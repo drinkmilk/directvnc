@@ -53,7 +53,7 @@
 
 #include <unistd.h>
 #include "directvnc.h"
-#include "keysymdef.h"
+#include "keysym.h"
 
 /*
  * This is an extension to the original directvnc enabling processing of a subset

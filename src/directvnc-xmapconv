@@ -7,15 +7,14 @@
 # The script reads the xmodmap file on its stdin and outputs directvnc-compatible
 # on its stdout.
 
-export PROG=`basename $0`
-export KEYSYMDEF=`dirname $0`/../include/keysymdef.h
+KEYSYMDEF=/usr/include/X11/keysymdef.h
 
-if [ ! -r $KEYSYMDEF ] ; then
-  echo "$0: cannot access the keysymdef file"
-  exit
+if [ ! -r $KEYSYMDEF ]; then
+    echo "$0: $KEYSYMDEF does not exist. You may need to install X11 core wire protocol headers."
+    exit 1;
 fi
 
-export FORCEDEFS=`grep '^#ifdef' $KEYSYMDEF | sed 's/#ifdef */-D/g'`
+FORCEDEFS=`grep '^#ifdef' $KEYSYMDEF | sed 's/#ifdef */-D/g'`
 
 grep '^ *keycode' | sed 's/=//g' | awk '
 {

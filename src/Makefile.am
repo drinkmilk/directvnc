@@ -9,15 +9,13 @@ AM_CFLAGS            = @DIRECTFB_CFLAGS@ $(DEBUGFLAGS)
 LIBOBJS = @LIBOBJS@
 
 bin_PROGRAMS      = directvnc
-directvnc_SOURCES       = main.c debug.h dfb.c directvnc.h sockets.c args.c\
-		       rfb.c getopt.c getopt1.c getopt.h\
-		       d3des.c d3des.h vncauth.c vncauth.h jpeg.c jpeg.h\
-		       tight.c tight.h rfbproto.h keysym.h keysymdef.h \
+directvnc_SOURCES       = main.c debug.h dfb.c directvnc.h sockets.c args.c \
+		       rfb.c getopt.c getopt1.c getopt.h \
+		       d3des.c d3des.h vncauth.c vncauth.h jpeg.c jpeg.h \
+		       tight.c tight.h rfbproto.h keysym.h \
 		       cursor.c modmap.c
 
 bin_SCRIPTS = directvnc-xmapconv
-
-include_HEADERS = keysymdef.h
 
 # setuid root. Is this really necessary? I cant access my framebuffer
 # otherwise.
