@@ -12,11 +12,10 @@ used as described in the mentioned manual page Other xmodmap expressions will
 be ignored.  So, the following is a valid syntax of an xmodmap file that can be
 converted into a directvnc keyboard layout file:
 
-!.........................................................................
 .br
-!        Key    Base     Shift          Mode               Mode+Shift
+         Key    Base     Shift          Mode               Mode+Shift
 .br
-!-------------------------------------------------------------------------
+
 .br
 keycode  13     = 4      dollar         4                  quotedbl
 .br
@@ -129,7 +128,7 @@ directvnc performs its default translation of keyboard code into a keysym using
 its hardcoded ISO-8859-1 translation table.
 
 .SH SEE ALSO
-directvnc(1), xmodmap(1)
+directvnc(1), directvnc-xmapconv(1), xmodmap(1)
 
 .SH AUTHOR
 Dimitry Golubovsky, Loris Boillet
