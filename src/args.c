@@ -29,35 +29,6 @@ static void show_usage_and_exit();
 static void show_version();
 static void _parse_options_array(int argc, char **argv);
 
-/* Predefined client side settings
- * for 16 and 24 (32 w/o alpha) bpp modes.
- * It is believed to be sufficient for most situations.
- * */
-
-static struct clientsettings cl16bpp = {
-  .bpp = 16,
-  .depth = 16,
-  .truecolour = 1,
-  .redmax = 31,
-  .greenmax = 63,
-  .bluemax = 31,
-  .redshift = 11,
-  .greenshift = 5,
-  .blueshift = 0
-};
-
-static struct clientsettings cl24bpp = {
-  .bpp = 32,
-  .depth = 24,
-  .truecolour = 1,
-  .redmax = 255,
-  .greenmax = 255,
-  .bluemax = 255,
-  .redshift = 16,
-  .greenshift = 8,
-  .blueshift = 0
-};
-
 int
 args_parse(int argc, char **argv)
 {

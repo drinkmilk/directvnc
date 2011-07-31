@@ -52,6 +52,7 @@
 
 
 #include <unistd.h>
+#include <ctype.h>
 #include "directvnc.h"
 #include "keysym.h"
 
@@ -110,6 +111,8 @@ int modmap_read_file(filename)
        bzero (&kbmap[i],sizeof(MAPENTRY));
     }
     if(filename != NULL) return process_file(filename);
+
+    return 0;
 }
 
 static int process_file (filename)
@@ -128,7 +131,7 @@ static int process_file (filename)
         if (!fp) {
             fprintf (stderr, "unable to open modmap file '%s' for reading\n",
                      filename);
-            return 0;
+            return -1;
         }
     }
 
@@ -142,7 +145,7 @@ static int process_file (filename)
     }
 
     (void) fclose (fp);
-    return 1;
+    return 0;
 }
 
 

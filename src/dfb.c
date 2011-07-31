@@ -245,7 +245,7 @@ _dfb_handle_key_event(DFBInputEvent evt, int press_or_release)
    int level = 0;
    int ctrl = 0;
    char keytype = 0; /* '',A,N,K */
-   DFBInputDeviceLockState lkst;
+   DFBInputDeviceLockState lkst = 0;
    DFBInputDeviceKeymapEntry entry;
    keyboard->GetKeymapEntry(keyboard, evt.key_code, &entry);
    /* OK according to the RFB specs we need to modify

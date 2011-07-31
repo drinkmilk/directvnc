@@ -158,10 +158,10 @@ _rfb_authenticate()
 	 /* we didnt get a password on the command line, so go get one */
          if (!opt.password) opt.password = getpass("Password: ");
 
-	 if (!read_from_rfb_server(sock, challenge_and_response, CHALLENGESIZE))
+	 if (!read_from_rfb_server(sock, (char *)challenge_and_response, CHALLENGESIZE))
 	    return 0;
 	 vncEncryptBytes(challenge_and_response, opt.password);
-	 if (!write_exact(sock, challenge_and_response, CHALLENGESIZE))
+	 if (!write_exact(sock, (char *)challenge_and_response, CHALLENGESIZE))
 	    return 0;
 	 if (!read_from_rfb_server(sock, (char*)&auth_result, 4))
 	    return 0;
