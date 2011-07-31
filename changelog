@@ -1,3 +1,8 @@
+Wed Jul 31 21:23:54 2011  Loris Boillet <lboillet69@gmail.com>
+	* New version: 0.7.7
+	* Adds Keyboard Layout Switching support (thanks Dimitry Golubovsky)
+	* Adds 24bpp support (thanks Dimitry Golubovsky)
+
 Wed Jan 13 22:39:24 2010  Loris Boillet <lboillet69@gmail.com>
 	* 7 years later... new version! 0.7.6 (bug fixes only)
 	* Fix compatibility issue with DirectFB >= 0.9.24

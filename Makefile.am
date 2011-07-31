@@ -7,7 +7,7 @@ MAINTAINERCLEANFILES = Makefile.in
 
 man_MANS = directvnc.1 directvnc-xmapconv.1 directvnc-kbmapping.7
 
-docs_DATA = README AUTHORS ChangeLog
+docs_DATA = README AUTHORS changelog
 docsdir = $(prefix)/share/doc/@PACKAGE@
 
 EXTRA_DIST = \

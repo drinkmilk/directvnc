@@ -53,7 +53,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,755)
-%doc AUTHORS ChangeLog README
+%doc AUTHORS changelog README
 %{_mandir}/man1/directvnc.1*
 %{_mandir}/man1/directvnc-xmapconv.1*
 %{_mandir}/man1/directvnc-kbmapping.7*

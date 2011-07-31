@@ -102,11 +102,12 @@ be converted into the format that directvnc understands, and can be loaded upon
 directvnc startup with this option. See directvnc-kbmapping(7).
 
 .SH LIMITATIONS
-At the moment, it is still necessary to use the -bpp command line option to set color
-depth. When negotiating with the remote VNC server side, color depth supplied by the
-server will be used. It is therefore necessary to make sure (at least in the present)
-that screen color depth (default, or set in the DirectFB configuration file), color
-depth supplied at the command line, and remote VNC server color depth all match.
+At the moment, it is still necessary to use the \-\-bpp command line option to
+set color depth. When negotiating with the remote VNC server side, color depth
+supplied by the server will be used. It is therefore necessary to make sure (at
+least in the present) that screen color depth (default, or set in the DirectFB
+configuration file), color depth supplied at the command line, and remote VNC
+server color depth all match.
 
 .SH SEE ALSO
 directfbrc(5), directvnc-kbmapping(7), directvnc-xmapconv(1), xmodmap(1)
