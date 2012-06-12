@@ -13,9 +13,9 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, a copy can be downloaded from 
+ * along with this program; if not, a copy can be downloaded from
  * http://www.gnu.org/licenses/gpl.html, or obtained by writing to the
- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, 
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
 
@@ -86,13 +86,25 @@ static MAPENTRY kbmap[256];
 
 int modmap_translate_code(int keycode,DFBInputDeviceLockState lock, int shift) {
    int apply_caps = 0;
-   if (keycode > 255) return XK_VoidSymbol;
+
+   if (keycode > 255)
+       return XK_VoidSymbol;
+
    keycode += MIN_KEYCODE;
-   if (kbmap[keycode].keycode != keycode) return XK_VoidSymbol;
-   if (isalpha(kbmap[keycode].base)) apply_caps = 1;
-   if (lock & DILS_SCROLL && index ("[];',./`", kbmap[keycode].base) != NULL) apply_caps = 1;
-   if (lock & DILS_CAPS && apply_caps) shift = !shift;
-   return (lock & DILS_SCROLL) ? (shift ? kbmap[keycode].modshift : kbmap[keycode].mode) : 
+
+   if (kbmap[keycode].keycode != keycode)
+       return XK_VoidSymbol;
+
+   if (isalpha(kbmap[keycode].base))
+       apply_caps = 1;
+
+   if (lock & DILS_SCROLL && index ("[];',./`", kbmap[keycode].base) != NULL)
+       apply_caps = 1;
+
+   if (lock & DILS_CAPS && apply_caps)
+       shift = !shift;
+
+   return (lock & DILS_SCROLL) ? (shift ? kbmap[keycode].modshift : kbmap[keycode].mode) :
                                  (shift ? kbmap[keycode].shift : kbmap[keycode].base);
 }
 
@@ -103,29 +115,29 @@ int modmap_translate_code(int keycode,DFBInputDeviceLockState lock, int shift) {
 static int process_file (char *);
 static void process_line (int, char *);
 
-int modmap_read_file(filename)
-    char *filename;
+int modmap_read_file(char *filename)
 {
     int i;
+
     for (i = 0; i < 256; i ++) {
        bzero (&kbmap[i],sizeof(MAPENTRY));
     }
-    if(filename != NULL) return process_file(filename);
 
-    return 0;
+    return process_file(filename);
 }
 
-static int process_file (filename)
-    char *filename;                     /* NULL means use stdin */
+/*
+ * filename: NULL means use stdin
+ */
+static int process_file (char *filename)
 {
     FILE *fp;
     char buffer[BUFSIZ];
     int lineno;
 
     /* open the file, eventually we'll want to pipe through cpp */
-
     if (!filename) {
-        return 1; /* use the hardcoded map */
+        return 0; /* use the hardcoded map */
     } else {
         fp = fopen (filename, "r");
         if (!fp) {
@@ -134,7 +146,6 @@ static int process_file (filename)
             return -1;
         }
     }
-
 
     for (lineno = 0; ; lineno++) {
         buffer[0] = '\0';
@@ -182,7 +193,6 @@ static void process_line (lineno, buffer)
     }
     if (i >= 0) cp[len = (i+1)] = '\0';  /* nul terminate */
 
-
     /* handle input */
     /*handle_line (cp, len);*/
 
@@ -192,6 +202,5 @@ static void process_line (lineno, buffer)
     sscanf(cp,"%s %c %x %x %x %x", kkbuf, &me.keycode, &me.base, &me.shift, &me.mode, &me.modshift);
 
     kbmap[me.keycode&0xFF] = me;
-
 }
 
