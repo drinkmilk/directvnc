@@ -120,6 +120,7 @@ struct __dfb_vnc_options
    char *servername;
    int port;
    char *password;
+   char *passwordfile;
    char *encodings;
    char *modmapfile;
    struct serversettings server;

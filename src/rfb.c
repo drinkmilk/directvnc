@@ -156,7 +156,17 @@ _rfb_authenticate()
       case rfbVncAuth:
 
 	 /* we didnt get a password on the command line, so go get one */
-         if (!opt.password) opt.password = getpass("Password: ");
+         if (!opt.password)
+		{
+			if( opt.passwordfile )
+			{
+				opt.password = vncDecryptPasswdFromFile( opt.passwordfile );
+			}
+			else
+			{
+				opt.password = getpass("Password: ");
+			}
+		}
 
 	 if (!read_from_rfb_server(sock, (char *)challenge_and_response, CHALLENGESIZE))
 	    return 0;
