@@ -98,6 +98,7 @@ _parse_options_array(int argc, char **argv)
        'c', ':',
        'q', ':',
        'p', ':',
+       'P', ':',
        'e', ':',
        's',
        'n',
@@ -118,6 +119,7 @@ _parse_options_array(int argc, char **argv)
       {"compresslevel",  1, NULL, 'c'},
       {"quality",        1, NULL, 'q'},
       {"password",       1, NULL, 'p'},
+      {"passwordfile",   1, NULL, 'P'},
       {"encodings",      1, NULL, 'e'},
       {"shared",         0, NULL, 's'},
       {"noshared",       0, NULL, 'n'},
@@ -175,6 +177,9 @@ _parse_options_array(int argc, char **argv)
 	 case 'p':
 	    opt.password = strdup(optarg);
 	    break;
+	 case 'P':
+	    opt.passwordfile = strdup(optarg);
+	    break;
 	 case 'e':
 	    opt.encodings = strdup(optarg);
 	    break;   
@@ -230,6 +235,7 @@ show_usage_and_exit()
      /*0        1         2         */ /*3         4         5         6         7        */
      /*12345678901234567890123456789*/ /*0123456789012345678901234567890123456789012345678*/
       "  -p, --password STRING      "   "Password for the server.\n"
+      "  -P, --passwordfile FILENAME"   "Password file for the server.\n"
       "  -b, --bpp NUM              "   "Set the clients bit per pixel to NUM.\n"
       "  -f, --pollfrequency MS     "   "Time between checks for events in milliseconds.\n"
       "  -l, --nolocalcursor        "   "Disable local cursor handling.\n"
