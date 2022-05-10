@@ -102,7 +102,7 @@ dfb_flip()
 }
 
 void
-dfb_flip_rect(x, y, w, h)
+dfb_flip_rect(int x, int y, int w, int h)
 {
    rect.x1 = x+opt.h_offset;
    rect.y1 = y+opt.v_offset;
