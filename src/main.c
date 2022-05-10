@@ -24,6 +24,11 @@
 #include <math.h>
 #include <signal.h>
 
+/* globals definitions */
+char buffer[BUFFER_SIZE];
+struct _mousestate mousestate;
+int sock;
+
 /* little convenience function */
 static inline double get_time(void);
 static inline void sig_handler(int foo) { exit(1); }
