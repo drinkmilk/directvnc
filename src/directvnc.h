@@ -42,7 +42,7 @@
    Tight encoding assumes BUFFER_SIZE is at least 16384 bytes. */
 
 #define BUFFER_SIZE (640*480) 
-char buffer[BUFFER_SIZE];
+extern char buffer[BUFFER_SIZE];
 
 #define MAX_ENCODINGS 10
 
@@ -64,9 +64,9 @@ struct _mousestate
    unsigned int buttonmask;
 };
 
-struct _mousestate mousestate;
+extern struct _mousestate mousestate;
 
-int sock;
+extern int sock;
 
 /* rfb.c */
 int rfb_connect_to_server (char *server, int display);
